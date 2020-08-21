@@ -1,0 +1,40 @@
+<div class="row text-center">
+  <img ng-if="!main.operations.loading" ng-src="images/loading.gif">
+</div>
+<div ng-if="main.operations.loading">
+  <form name="formu">
+    <div class="row jumbotron ">
+      <div class="col-xs-12 col-md-12">
+        <div class="col-md-2"></div>
+        <div class="input-group col-md-8">
+          <input type="text" class="form-control input-custom" placeholder="Guardar URL" ng-model="main.url"
+            id="txtSearch" />
+          <div class="input-group-btn">
+            <button class="btn btn-primary btn-custom" ng-click="main.createUrl()">
+              <span>ACORTAR</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="card" ng-repeat="url in main.urls">
+      <div class="card-text">
+        <div class="col-md-6">
+          <p ng-bind="url.short_url"></p>
+          <h5 class="card-title">Accediste {{url.view_count}} a la URL</h5>
+        </div>
+        <div class="col-md-6">
+          <button class="btn text-right" ng-click="main.editUrl(url)" ><i class="fa fa-copy"></i></button>
+          <button class="btn text-right" ng-click="main.deleteUrl(url.id)"><i class="fa fa-trash"></i></button>
+        </div>
+        <br><br><hr>
+        <h4 ng-bind="url.original_url"></h4>
+      </div>
+
+    </div>
+  </div>
+</div>
