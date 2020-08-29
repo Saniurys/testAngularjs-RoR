@@ -1,6 +1,6 @@
 angular.module('wisbooFrontApp')
   .service('webService',['$http','$resource', function($http, $resource) {
-    var path = "http://localhost:4000/";
+    var path = "http://localhost:3000/";
     return {
         getUrl : getUrl,
         createUrl : createUrl,
@@ -22,7 +22,7 @@ angular.module('wisbooFrontApp')
 
     function editUrl(params){
         //Quedé por acá
-        return $http.put(path + "/urls" , params );
+        return $http.put(path + "/urls/"+ params.id , params );
     }
  
 

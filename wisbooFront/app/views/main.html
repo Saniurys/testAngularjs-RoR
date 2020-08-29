@@ -28,7 +28,7 @@
           <h5 class="card-title">Accediste {{url.view_count}} a la URL</h5>
         </div>
         <div class="col-md-6">
-          <button class="btn text-right" ng-click="main.editUrl(url)" ><i class="fa fa-copy"></i></button>
+          <a href="{{url.original_url}}" target="_blank"> <button class="btn text-right" ng-click="main.editUrl(url)" ><i class="fa fa-copy"></i></button></a>
           <button class="btn text-right" ng-click="main.deleteUrl(url.id)"><i class="fa fa-trash"></i></button>
         </div>
         <br><br><hr>

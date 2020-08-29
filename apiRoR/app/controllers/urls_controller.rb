@@ -1,4 +1,5 @@
 class UrlsController < ApplicationController
+  
   before_action :set_url, only: [:show, :update, :destroy]
 
   # GET /urls
@@ -26,11 +27,16 @@ class UrlsController < ApplicationController
 
   # PATCH/PUT /urls/1
   def update
-    if @url.update(url_params)
-      render json: @url
-    else
-      render json: @url.errors, status: :unprocessable_entity
-    end
+   # if @url.update(url_params)
+      @url = Url.find_by(short_url: params[:short_url])
+      @url.view_count +=1
+      @url.save!
+      # El redirect_to me da error de CORS al llegar a angularjs
+      #redirect_to (@url.original_url)
+      # render json: @url
+   # else
+   #   render json: @url.errors, status: :unprocessable_entity
+   # end
   end
 
   # DELETE /urls/1
@@ -41,7 +47,7 @@ class UrlsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url
-      @url = Url.find(params[:id])
+     # @url = Url.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -38,13 +38,16 @@ angular.module('wisbooFrontApp')
     }
 
     function createUrl() {
+
+      let url_short = vm.url.substr(vm.url.length - 5);
       let params = {
-        "short_url": vm.url,
+        "short_url": url_short,
         "original_url": vm.url,
         "view_count": 0
       }
       webService.createUrl(params).then(function (response) {
         alert("Insert exitoso");
+        vm.url = "";
         getUrl();
       }).catch(function (error) {
         console.log("ocurrió un error", error);
@@ -63,7 +66,6 @@ angular.module('wisbooFrontApp')
     }
 
     function editUrl(url){
-      url.view_count = + 1;
       webService.editUrl(url).then(function (response) {
         alert("Actualizado con éxito");
         getUrl();
